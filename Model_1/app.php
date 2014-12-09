@@ -3,8 +3,6 @@
 include __DIR__ . '/_model.php';
 // Параметры, требующие оценки:
 include __DIR__ . '/_params.php';
-// Матрица отношений
-include __DIR__ . '/_matrix.php';
 
 include __DIR__ . '/dydt.php';
 
@@ -22,5 +20,3 @@ for($T = 0; $T < 10; $T++){
 	foreach($echo as $i) echo substr($i, 0, 5) . '	';
 	echo "\n";
 }
-
-

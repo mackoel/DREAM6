@@ -43,36 +43,35 @@ function dydt($u){
 	$rs3 = 1.0/((1+pow($p4/$v6_Kd,$v6_h)));
 	$rs4 = 1.0/((1+pow($p2/$v4_Kd,$v4_h)));
 	$rs5 = 1.0/((1+pow($p4/$v7_Kd,$v7_h)));
+	
+	$system = array();
+	$system[] = false; // Нулевой индекс
+	
+	$system[] = $cod1 - $pp1_mrna_degradation_rate * $pp1_mrna;
+	$system[] = 0;
+	$system[] = $rbs1_strength * $pp1_mrna - $p1_degradation_rate * $p1;
 
-	$rates = array();
-	$rates[] = $cod1;
-	$rates[] = $pp1_mrna_degradation_rate * $pp1_mrna;
-	$rates[] = $rbs1_strength * $pp1_mrna;
-	$rates[] = $p1_degradation_rate * $p1;
-	$rates[] = $cod2;
-	$rates[] = $pp2_mrna_degradation_rate * $pp2_mrna;
-	$rates[] = $rbs2_strength * $pp2_mrna;
-	$rates[] = $p2_degradation_rate * $p2;
-	$rates[] = $cod3;
-	$rates[] = $pp3_mrna_degradation_rate * $pp3_mrna;
-	$rates[] = $rbs3_strength * $pp3_mrna;
-	$rates[] = $p3_degradation_rate * $p3;
-	$rates[] = $cod4;
-	$rates[] = $pp4_mrna_degradation_rate * $pp4_mrna;
-	$rates[] = $rbs4_strength * $pp4_mrna;
-	$rates[] = $p4_degradation_rate * $p4;
-	$rates[] = $cod5;
-	$rates[] = $pp5_mrna_degradation_rate * $pp5_mrna;
-	$rates[] = $rbs5_strength * $pp5_mrna;
-	$rates[] = $p5_degradation_rate * $p5;
-	$rates[] = $cod6;
-	$rates[] = $pp6_mrna_degradation_rate * $pp6_mrna;
-	$rates[] = $rbs6_strength * $pp6_mrna;
-	$rates[] = $p6_degradation_rate * $p6;
+	$system[] = $cod2 - $pp2_mrna_degradation_rate * $pp2_mrna;
+	$system[] = 0;
+	$system[] = $rbs2_strength * $pp2_mrna - $p2_degradation_rate * $p2;
 
-    $system = array_fill(1, 18, 0);
-    foreach($sm as $l => $line) foreach($line as $k => $value) $system[$l + 1] += $rates[$k] * $value;
-    //foreach($system as $k => $v) $system[$k] = $v > 0 ? $v : 0;
+	$system[] = $cod3 - $pp3_mrna_degradation_rate * $pp3_mrna;
+	$system[] = 0;
+	$system[] = $rbs3_strength * $pp3_mrna - $p3_degradation_rate * $p3;
+
+	$system[] = $cod4 - $pp4_mrna_degradation_rate * $pp4_mrna;
+	$system[] = 0;
+	$system[] = $rbs4_strength * $pp4_mrna - $p4_degradation_rate * $p4;
+
+	$system[] = $cod5 - $pp5_mrna_degradation_rate * $pp5_mrna;
+	$system[] = 0;
+	$system[] = $rbs5_strength * $pp5_mrna - $p5_degradation_rate * $p5;
+
+	$system[] = $cod6 - $pp6_mrna_degradation_rate * $pp6_mrna;
+	$system[] = 0;
+	$system[] = $rbs6_strength * $pp6_mrna - $p6_degradation_rate * $p6;
+
+    foreach($system as $k => $v) $system[$k] = $v > 0 ? $v : 0;
 
     return $system;
 }
