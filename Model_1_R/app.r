@@ -6,7 +6,7 @@
 # Запуск с двумя парамтрами:
 #  ./app.r parameters_filename quality
 #  1. parameters_filename — список параметров, разделитель, перенос сторки
-#  2. quality — количество строчек, сравниваемых в таблицах от 1 до 20
+#  2. quality — количество строчек, сравниваемых в таблицах от 1 до 10
 
 args  <- commandArgs(trailingOnly = TRUE)
 howto <- function(str){
@@ -17,7 +17,7 @@ howto <- function(str){
 
 if(length(args) != 2){ howto("Input error") }
 quality <- round(as.numeric(args[2]))
-if(quality > 20 | quality < 2){ quality <- 10 }
+if(quality > 10 | quality < 2){ quality <- 5 }
 
 source("_parms_read.r") # чтение параметров  
 source("_state.r")      # начальное состояние системы (вектор)
@@ -26,7 +26,7 @@ source("_dydt.r")
 
 library(deSolve)
 
-times <- seq(0, quality, by = 0.1)
+times <- seq(0, quality * 2, by = 0.1)
 out <- ode(y = state, times = times, func = dydt, parms = NULL)
 
 # Извлекаем только pp{i}_mrna при чётных time
