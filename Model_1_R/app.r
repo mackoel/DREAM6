@@ -17,7 +17,7 @@ howto <- function(str){
 
 if(length(args) != 2){ howto("Input error") }
 quality <- round(as.numeric(args[2]))
-if(quality > 10 | quality < 2){ quality <- 5 }
+if(quality > 10 || quality < 2){ quality <- 5 }
 
 source("_parms_read.r") # чтение параметров  
 source("_state.r")      # начальное состояние системы (вектор)
