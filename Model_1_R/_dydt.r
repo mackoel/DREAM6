@@ -1,12 +1,4 @@
-#!/usr/bin/env Rscript
-#install.packages('deSolve', repos='http://probability.ca/cran')
-
-library(deSolve)
-source("_parameters.R") # список параметров  
-source("_state.R")      # начальное состояние системы (вектор)
-options(width = 160)    # ширина вывода на экран 
-
-DyDt <- function(t, u, params){
+dydt <- function(t, u, params){
     as1 <- ((1+((u["p1"]/p$v2_Kd)^p$v2_h))-1)/(1+((u["p1"]/p$v2_Kd)^p$v2_h));
     as2 <- ((1+((u["p1"]/p$v1_Kd)^p$v1_h))-1)/(1+((u["p1"]/p$v1_Kd)^p$v1_h));
     as3 <- ((1+((u["p1"]/p$v3_Kd)^p$v3_h))-1)/(1+((u["p1"]/p$v3_Kd)^p$v3_h));
@@ -40,9 +32,3 @@ DyDt <- function(t, u, params){
 
 	return(list(ds))
 }
-
-p <- parameters # параметры системы
-times <- seq(0, 10, by = 0.05)
-out <- ode(y = state, times = times, func = DyDt, parms = NULL)
-
-print(out)

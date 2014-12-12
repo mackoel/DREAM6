@@ -1,5 +1,5 @@
 # Вектор изменяемого состояния сисемы
-state = c();
+state <- c()
 state["pp1_mrna"] <- 1
 state["pp2_mrna"] <- 1
 state["pp3_mrna"] <- 1
