@@ -27,7 +27,7 @@ source("_dydt.r")
 library(deSolve)
 
 times <- seq(0, quality * 2, by = 0.1)
-out <- ode(y = state, times = times, func = dydt, parms = NULL)
+out <- ode(y = state, times = times, func = dydt, parms = NULL, method = "rk4")
 
 # Извлекаем только pp{i}_mrna при чётных time
 m <- out[seq(1, quality * 10, by = 10),(2:7)]
