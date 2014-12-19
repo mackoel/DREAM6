@@ -3,21 +3,27 @@
 # Установка deSolve:
 # install.packages('deSolve', repos='http://probability.ca/cran')
 
-# Запуск с двумя парамтрами:
-#  ./app.r parameters_filename quality
-#  1. parameters_filename — список параметров, разделитель, перенос сторки
-#  2. quality — количество строчек, сравниваемых в таблицах от 1 до 10
+# Запуск:
+#  ./app.r quality parameters_filename
+#  ./app.r parameters_filename
+#  ./app.r
+#  1. quality — количество строчек, сравниваемых в таблицах от 1 до 10
+#  2. parameters_filename — список параметров, разделитель, перенос сторки
 
-args  <- commandArgs(trailingOnly = TRUE)
-howto <- function(str){
-	cat(str)
-	cat("\nUSE: ./app.r parameters_filename quality\n")
-	q()
+args    <- commandArgs(trailingOnly = TRUE)
+pfile   <- "parms.txt"
+quality <- 10
+
+if(length(args) == 2){
+	quality <- round(as.numeric(args[1]))
+	pfile   <- args[2]
 }
-
-if(length(args) != 2){ howto("Input error") }
-quality <- round(as.numeric(args[2]))
-if(quality > 10 || quality < 2){ quality <- 5 }
+if(length(args) == 1){
+	pfile   <- args[1]
+}
+if(quality > 10 || quality < 2){
+	quality <- 10
+}
 
 source("_parms_read.r") # чтение параметров  
 source("_state.r")      # начальное состояние системы (вектор)

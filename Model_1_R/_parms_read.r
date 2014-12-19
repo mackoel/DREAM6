@@ -1,9 +1,9 @@
 # Чтение параметров из указанного файла
 # Значений параметров — 40. Уникальных — 29
 # Разделитель — перенос строки
-if(!file.exists(args[1])){ howto("Parameters file not found") }
+if(!file.exists(pfile)){ q() }
 p <- list()
-tmp <- as.numeric(readLines(args[1]))
+tmp <- as.numeric(readLines(pfile))
 tmp[1]  -> p$p1_degradation_rate
 tmp[1]  -> p$p2_degradation_rate
 tmp[1]  -> p$p3_degradation_rate
