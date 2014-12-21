@@ -25,7 +25,22 @@ if(quality > 10 || quality < 2){
 	quality <- 10
 }
 
-source("_parms_read.r") # чтение параметров  
+source(pfile)
+# source("_parms_read.r") # чтение параметров  
+# degradation_rate - один общий параметр для всех
+degradation_rate -> p1_degradation_rate
+degradation_rate -> p2_degradation_rate
+degradation_rate -> p3_degradation_rate
+degradation_rate -> p4_degradation_rate
+degradation_rate -> p5_degradation_rate
+degradation_rate -> p6_degradation_rate
+degradation_rate -> pp1_mrna_degradation_rate
+degradation_rate -> pp2_mrna_degradation_rate
+degradation_rate -> pp3_mrna_degradation_rate
+degradation_rate -> pp4_mrna_degradation_rate
+degradation_rate -> pp5_mrna_degradation_rate
+degradation_rate -> pp6_mrna_degradation_rate
+
 source("_state.r")      # начальное состояние системы (вектор)
 source("_matrix.r")     # экспериментальные значения
 source("_dydt.r")
